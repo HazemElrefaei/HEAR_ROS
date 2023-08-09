@@ -8,7 +8,7 @@ ROSUnit_PoseProvider::ROSUnit_PoseProvider(ros::NodeHandle& nh): nh_(nh){
 
 std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::registerOptiPose(std::string t_name){
     m_server = nh_.advertiseService("set_height_offset", &ROSUnit_PoseProvider::srv_callback, this);
-    rot_offset.setRPY(0.0, 0.0, M_PI/2.0);
+    rot_offset.setRPY(M_PI/2.0, 0.0, M_PI/2.0);
     trans_offset.setZero();
     
     opti_pos_port = new ExternalOutputPort<Vector3D<float>>(0);
@@ -22,7 +22,7 @@ std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::register
 }
 
 std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::registerVisionPose(std::string t_name){
-    rot_offset_vision.setRPY(0.0, 0.0, M_PI/2.0);
+    rot_offset_vision.setRPY(M_PI/2.0, 0.0, M_PI/2.0);
     trans_offset_vision.setZero();
 
     vision_pos_port = new ExternalOutputPort<Vector3D<float>>(0);
