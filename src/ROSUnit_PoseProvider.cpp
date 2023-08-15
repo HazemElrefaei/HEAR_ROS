@@ -22,7 +22,7 @@ std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::register
 }
 
 std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::registerVisionPose(std::string t_name){
-    rot_offset_vision.setRPY(M_PI/2.0, 0.0, M_PI/2.0);
+    rot_offset_vision.setRPY(0.0, 0.0, 0.0);
     trans_offset_vision.setZero();
 
     vision_pos_port = new ExternalOutputPort<Vector3D<float>>(0);
