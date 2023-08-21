@@ -11,11 +11,11 @@ std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::register
     rot_offset.setRPY(M_PI/2.0, 0.0, M_PI/2.0);
     trans_offset.setZero();
     
-    opti_pos_port = new ExternalOutputPort<Vector3D<float>>(0);
+    opti_pos_port = new ExternalOutputPort<Vector3D<float>>();
     opti_pos_port->write(Vector3D<float>(0,0,0));
-    opti_vel_port = new ExternalOutputPort<Vector3D<float>>(0);
+    opti_vel_port = new ExternalOutputPort<Vector3D<float>>();
     opti_vel_port->write(Vector3D<float>(0,0,0));
-    opti_ori_port = new ExternalOutputPort<Vector3D<float>>(0);
+    opti_ori_port = new ExternalOutputPort<Vector3D<float>>();
     opti_ori_port->write(Vector3D<float>(0,0,0));
     opti_sub = nh_.subscribe(t_name, 10, &ROSUnit_PoseProvider::callback_opti_pose, this, ros::TransportHints().tcpNoDelay());
     return std::vector<ExternalOutputPort<Vector3D<float>>*>{opti_pos_port, opti_vel_port, opti_ori_port};
@@ -25,32 +25,32 @@ std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::register
     rot_offset_vision.setRPY(0.0, 0.0, 0.0);
     trans_offset_vision.setZero();
 
-    vision_pos_port = new ExternalOutputPort<Vector3D<float>>(0);
+    vision_pos_port = new ExternalOutputPort<Vector3D<float>>();
     vision_pos_port->write(Vector3D<float>(0,0,0));
-    vision_vel_port = new ExternalOutputPort<Vector3D<float>>(0);
+    vision_vel_port = new ExternalOutputPort<Vector3D<float>>();
     vision_vel_port->write(Vector3D<float>(0,0,0));
-    vision_ori_port = new ExternalOutputPort<Vector3D<float>>(0);
+    vision_ori_port = new ExternalOutputPort<Vector3D<float>>();
     vision_ori_port->write(Vector3D<float>(0,0,0));
     vision_sub = nh_.subscribe(t_name, 10, &ROSUnit_PoseProvider::callback_vision_pose, this, ros::TransportHints().tcpNoDelay());
     return std::vector<ExternalOutputPort<Vector3D<float>>*>{vision_pos_port, vision_vel_port, vision_ori_port};
 }
 
 ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerImuOri(std::string t_name){
-    imu_ori_port = new ExternalOutputPort<Vector3D<float>>(0);
+    imu_ori_port = new ExternalOutputPort<Vector3D<float>>();
     imu_ori_port->write(Vector3D<float>(0,0,0));
     xsens_ori_sub = nh_.subscribe(t_name, 10, &ROSUnit_PoseProvider::callback_ori, this, ros::TransportHints().tcpNoDelay());
     return imu_ori_port;
 }
 
 ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerImuAngularRate(std::string t_name){
-    imu_angular_rt_port = new ExternalOutputPort<Vector3D<float>>(0);
+    imu_angular_rt_port = new ExternalOutputPort<Vector3D<float>>();
     imu_angular_rt_port->write(Vector3D<float>(0,0,0));
     xsens_ang_vel_sub = nh_.subscribe(t_name, 10, &ROSUnit_PoseProvider::callback_angular_vel, this, ros::TransportHints().tcpNoDelay());
     return imu_angular_rt_port;
 }
 
 ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerImuAcceleration(std::string t_name){
-    imu_acc_port = new ExternalOutputPort<Vector3D<float>>(0);
+    imu_acc_port = new ExternalOutputPort<Vector3D<float>>();
     imu_acc_port->write(Vector3D<float>(0,0,0));
     xsens_free_acc_sub = nh_.subscribe(t_name, 10, &ROSUnit_PoseProvider::callback_free_acc, this, ros::TransportHints().tcpNoDelay());
     return imu_acc_port;
