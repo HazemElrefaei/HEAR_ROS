@@ -4,7 +4,9 @@
 #include <vector>
 
 #include "ros/ros.h"
-#include <mavros_msgs/VehicleAngularVelocity.h>
+#ifdef PX4
+    #include <mavros_msgs/VehicleAngularVelocity.h>
+#endif
 #include <geometry_msgs/Vector3Stamped.h>
 #include <geometry_msgs/QuaternionStamped.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -43,7 +45,9 @@ private:
     void callback_ori(const geometry_msgs::QuaternionStamped::ConstPtr& );
     void callback_free_acc(const geometry_msgs::Vector3Stamped::ConstPtr& );
     void callback_angular_vel(const geometry_msgs::Vector3Stamped::ConstPtr&);
+    #ifdef PX4
     void callback_px4_angular_vel(const mavros_msgs::VehicleAngularVelocity::ConstPtr&);
+    #endif
     bool srv_callback(hear_msgs::set_float::Request&, hear_msgs::set_float::Response&);
     tf2::Matrix3x3 rot_offset, rot_offset_vision;
     tf2::Vector3 trans_offset, trans_offset_vision;

@@ -1,5 +1,6 @@
 #ifndef ROSUNIT_PX4ANGULARVELOCITYPROVIDER_HPP
 #define ROSUNIT_PX4ANGULARVELOCITYPROVIDER_HPP
+#ifdef PX4
 
 #include <vector>
 
@@ -22,7 +23,9 @@ private:
     ros::ServiceServer m_server;
     
     ExternalOutputPort<Vector3D<float>>* imu_angular_rt_port;
+    #ifdef PX4
     void callback_angular_vel(const mavros_msgs::VehicleAngularVelocity::ConstPtr&);
+    #endif
 
 public:
     void process(){}
@@ -32,5 +35,5 @@ public:
 };
 
 }
-
+#endif
 #endif
