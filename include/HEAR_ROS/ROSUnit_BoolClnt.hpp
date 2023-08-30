@@ -3,7 +3,6 @@
 
 #include <ros/ros.h>
 #include <hear_msgs/set_bool.h>
-#include <std_srvs/SetBool.h>
 #include "HEAR_core/DataTypes.hpp"
 #include "HEAR_ROS/ROSUnit_Client.hpp"
 #include <string>
