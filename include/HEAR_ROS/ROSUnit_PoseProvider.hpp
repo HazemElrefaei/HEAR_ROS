@@ -56,7 +56,7 @@ private:
     void callback_px4_angular_vel(const mavros_msgs::VehicleAngularVelocity::ConstPtr&);
     #endif
     bool srv_callback(hear_msgs::set_float::Request&, hear_msgs::set_float::Response&);
-    tf2::Matrix3x3 rot_offset, rot_offset_vision, rot_offset_PX4_ori;
+    tf2::Matrix3x3 rot_offset, rot_offset_vision, rot_offset_PX4_ori, rot_offset_PX4_yaw;
     tf2::Vector3 trans_offset, trans_offset_vision;
 
     tf2::Vector3 opti_pos, prev_pos, opti_vel, prev_diff, _hold;

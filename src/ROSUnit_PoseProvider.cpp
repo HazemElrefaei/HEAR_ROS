@@ -60,7 +60,8 @@ ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerPX4Vel(std::s
 }
 
 ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerPX4ImuOri(std::string t_name){
-    rot_offset_PX4_ori.setRPY(M_PI, 0.0, 0.0); 
+    rot_offset_PX4_ori.setRPY(M_PI, 0.0, 0.0);
+    rot_offset_PX4_yaw.setRPY(0.0, 0.0, M_PI/2.0);  
 
     px4_ori_port = new ExternalOutputPort<Vector3D<float>>();
     px4_ori_port->write(Vector3D<float>(0,0,0));
@@ -252,7 +253,7 @@ void ROSUnit_PoseProvider::callback_px4_ori(const mavros_msgs::VehicleAttitude::
     
     auto R_mat = tf2::Matrix3x3(tf2::Quaternion(msg->q_x, msg->q_y, msg->q_z, msg->q_w ));
 
-    R_mat = rot_offset_PX4_ori * R_mat * rot_offset_PX4_ori.transpose();
+    R_mat = rot_offset_PX4_yaw * (rot_offset_PX4_ori * R_mat * rot_offset_PX4_ori.transpose());
     tf2Scalar yaw, pitch, roll;
     R_mat.getEulerYPR(yaw, pitch, roll);
 
